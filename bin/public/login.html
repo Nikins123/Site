@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/styles.css">
+  <title>Логін</title>
+</head>
+<body>
+  <div class="login-container">
+    <form id="loginForm">
+      <label for="username">Ім'я користувача</label>
+      <input type="text" id="username" required>
+      
+      <label for="password">Пароль</label>
+      <input type="password" id="password" required>
+      
+      <button type="submit">Увійти</button>
+    </form>
+  </div>
+  <script src = "./server.js"></script>
+  <script src = "./hesh.js"></script>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      fetch('http://localhost:3000', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === 'Успішний вхід') {
+          alert('Логін успішний!');
+          // Направити користувача на іншу сторінку або інші дії
+        } else {
+          alert(data.message);
+        }
+      })
+      .catch(error => console.error('Помилка:', error));
+    });
+  </script>
+</body>
+</html>
