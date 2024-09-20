@@ -12,9 +12,9 @@ app.use(bodyParser.json());
 // Підключення до бази даних
 const db = mysql.createConnection({
   host: 'localhost',
-  user: 'Danyal',
-  password: 'Ren213yup!', 
-  database: 'movie_site'
+  user: 'Юзера',
+  password: 'Вводите сюди пароль від бази', 
+  database: 'Назву бази'
 });
 // Підключення до бази даних
 db.connect((err) => {
